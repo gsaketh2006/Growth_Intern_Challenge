@@ -5,15 +5,13 @@ import {
   CheckCircle2, 
   MessageSquare, 
   RefreshCw, 
-  Users, 
   Sliders, 
   Send, 
   ShieldCheck,
   Flame,
-  Info,
-  Layers
+  Check
 } from 'lucide-react';
-import { AudienceType, MessageObjective, MessageTone } from '../../types';
+import type { AudienceType, MessageObjective, MessageTone } from '../../types';
 
 export const MarketingAssistant: React.FC = () => {
   const [audience, setAudience] = useState<AudienceType>('College WhatsApp Groups');
@@ -23,7 +21,6 @@ export const MarketingAssistant: React.FC = () => {
   const [variantIndex, setVariantIndex] = useState(0);
   const [copied, setCopied] = useState(false);
 
-  // Template bank carefully crafted for real engagement
   const templateBank: Record<
     AudienceType,
     Record<MessageTone, Record<MessageObjective, string[]>>
@@ -146,7 +143,7 @@ export const MarketingAssistant: React.FC = () => {
           `Hey, saw this and thought of our final year project discussions: NxtWave is doing a free 60-min AI workshop for engineering students. Look at this: [URL]`,
         ],
         referral: [
-          `Hey bro/sis! Register for this AI workshop with me so we can build the project together! Use my code {CODE} here: [URL]`,
+          `Hey! Register for this AI workshop with me so we can build the project together! Use my code {CODE} here: [URL]`,
         ],
       },
       professional: {
@@ -174,7 +171,6 @@ export const MarketingAssistant: React.FC = () => {
     },
   };
 
-  // Generated message
   const rawTemplates = templateBank[audience][tone][objective] || [
     `Hey! Check out NxtWave's free online workshop "Build Your First AI Project in 60 Minutes" for engineering students: [URL] (Code: {CODE})`
   ];
@@ -206,46 +202,46 @@ export const MarketingAssistant: React.FC = () => {
   };
 
   return (
-    <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8 animate-fade-in">
+    <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-7 animate-fade-in">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-950 text-cyan-400 border border-cyan-800/80 mb-2">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-cyan-950/60 text-cyan-400 border border-cyan-500/30 mb-2">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Feature 4: AI Marketing Copy Generator</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">
-            Growth Copywriting Engine
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Marketing Copy Assistant
           </h1>
-          <p className="text-sm text-slate-300 mt-1 max-w-2xl">
+          <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
             Generate high-converting, natural promotional copy tailored for college WhatsApp groups, technical clubs, ambassadors, and peer-to-peer sharing.
           </p>
         </div>
 
         {/* Engine Transparency Notice */}
-        <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2 max-w-xs shrink-0">
+        <div className="surface-card p-2.5 rounded-xl text-[11px] text-slate-400 flex items-center gap-2 max-w-xs shrink-0">
           <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
           <span>
-            <strong className="text-slate-300">Deterministic Engine:</strong> Offline rule-based copywriting system. Zero API latency or rate limits.
+            <strong className="text-slate-200">Deterministic Engine:</strong> Offline rule-based copywriting system. Zero API latency or rate limits.
           </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Controls Column (5 cols) */}
-        <div className="lg:col-span-5 space-y-5">
-          <div className="p-6 rounded-2xl bg-[#0F1624] border border-slate-800 space-y-5">
-            <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+        <div className="lg:col-span-5 space-y-4">
+          <div className="surface-card p-5 sm:p-6 rounded-2xl space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-white/[0.06]">
               <Sliders className="w-4 h-4 text-cyan-400" />
-              <h3 className="text-sm font-bold text-white">Targeting Parameters</h3>
+              <h3 className="text-xs sm:text-sm font-bold text-white">Targeting Parameters</h3>
             </div>
 
-            {/* Audience */}
+            {/* Target Audience */}
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-2">
+              <label className="block text-[11px] font-semibold text-slate-300 mb-1.5">
                 Target Audience
               </label>
-              <div className="grid grid-cols-1 gap-2">
+              <div className="grid grid-cols-1 gap-1.5">
                 {(['College WhatsApp Groups', 'Technical Clubs', 'Student Ambassadors', 'Personal Friend Referrals'] as AudienceType[]).map((aud) => (
                   <button
                     key={aud}
@@ -255,12 +251,12 @@ export const MarketingAssistant: React.FC = () => {
                     }}
                     className={`px-3 py-2 text-xs font-medium rounded-lg text-left transition-all flex items-center justify-between ${
                       audience === aud
-                        ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-                        : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-400/50 font-semibold'
+                        : 'bg-white/[0.02] text-slate-400 hover:text-white border border-white/[0.06]'
                     }`}
                   >
                     <span>{aud}</span>
-                    {audience === aud && <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />}
+                    {audience === aud && <Check className="w-3.5 h-3.5 text-cyan-400" />}
                   </button>
                 ))}
               </div>
@@ -268,7 +264,7 @@ export const MarketingAssistant: React.FC = () => {
 
             {/* Message Tone */}
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-2">
+              <label className="block text-[11px] font-semibold text-slate-300 mb-1.5">
                 Message Tone
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -279,10 +275,10 @@ export const MarketingAssistant: React.FC = () => {
                       setTone(t);
                       setVariantIndex(0);
                     }}
-                    className={`py-2 px-2 text-xs font-medium rounded-lg capitalize text-center transition-all ${
+                    className={`py-1.5 px-2 text-xs font-medium rounded-lg capitalize text-center transition-all ${
                       tone === t
-                        ? 'bg-blue-600 text-white font-bold shadow-md shadow-blue-600/30'
-                        : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                        ? 'bg-blue-600 text-white font-bold shadow-sm'
+                        : 'bg-white/[0.02] text-slate-400 hover:text-white border border-white/[0.06]'
                     }`}
                   >
                     {t}
@@ -293,7 +289,7 @@ export const MarketingAssistant: React.FC = () => {
 
             {/* Message Objective */}
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-2">
+              <label className="block text-[11px] font-semibold text-slate-300 mb-1.5">
                 Message Objective
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -304,10 +300,10 @@ export const MarketingAssistant: React.FC = () => {
                       setObjective(obj);
                       setVariantIndex(0);
                     }}
-                    className={`py-2 px-2 text-xs font-medium rounded-lg capitalize text-center transition-all ${
+                    className={`py-1.5 px-2 text-xs font-medium rounded-lg capitalize text-center transition-all ${
                       objective === obj
-                        ? 'bg-indigo-600 text-white font-bold shadow-md shadow-indigo-600/30'
-                        : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                        ? 'bg-indigo-600 text-white font-bold shadow-sm'
+                        : 'bg-white/[0.02] text-slate-400 hover:text-white border border-white/[0.06]'
                     }`}
                   >
                     {obj}
@@ -318,7 +314,7 @@ export const MarketingAssistant: React.FC = () => {
 
             {/* Referral Code Injection */}
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-[11px] font-semibold text-slate-300 mb-1">
                 Insert Referral Code
               </label>
               <input
@@ -326,20 +322,20 @@ export const MarketingAssistant: React.FC = () => {
                 value={referralCode}
                 onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
                 placeholder="e.g. AMB-RAHUL"
-                className="w-full px-3 py-2 text-xs rounded-lg bg-slate-900 border border-slate-700 text-white font-mono uppercase focus:outline-none focus:border-cyan-400"
+                className="w-full px-3 py-2 text-xs rounded-lg bg-slate-900 border border-white/[0.1] text-white font-mono uppercase focus:outline-none focus:border-cyan-400"
               />
-              <span className="text-[10px] text-slate-400 mt-1 block">
-                Automatically formats into the prefilled registration CTA.
+              <span className="text-[10px] text-slate-500 mt-1 block">
+                Formats automatically into the prefilled CTA link.
               </span>
             </div>
           </div>
         </div>
 
-        {/* Live Preview & Actions Column (7 cols) */}
+        {/* Live Preview Column (7 cols) */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="p-6 rounded-2xl bg-[#0F1624] border border-cyan-500/30 flex flex-col justify-between shadow-xl">
+          <div className="surface-card p-5 sm:p-6 rounded-2xl flex flex-col justify-between shadow-xl">
             <div>
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+              <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] mb-4">
                 <div className="flex items-center gap-2">
                   <MessageSquare className="w-4 h-4 text-emerald-400" />
                   <span className="text-xs font-bold text-white uppercase tracking-wider">
@@ -353,7 +349,7 @@ export const MarketingAssistant: React.FC = () => {
                   </span>
                   <button
                     onClick={handleCycleVariant}
-                    className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors flex items-center gap-1 text-xs"
+                    className="p-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors flex items-center gap-1 text-xs"
                     title="Cycle to next copy variation"
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
@@ -363,12 +359,12 @@ export const MarketingAssistant: React.FC = () => {
               </div>
 
               {/* Realistic Chat Bubble Container */}
-              <div className="p-4 sm:p-6 rounded-2xl bg-[#0B141A] border border-slate-800 my-2">
+              <div className="p-4 sm:p-6 rounded-2xl bg-[#091414] border border-white/[0.06] my-2">
                 <div className="max-w-md ml-auto bg-[#005C4B] text-slate-100 rounded-2xl rounded-tr-xs p-4 shadow-md text-xs sm:text-sm leading-relaxed whitespace-pre-line relative">
                   {generatedMessage}
-                  <div className="flex items-center justify-end gap-1 text-[10px] text-emerald-300 mt-2">
+                  <div className="flex items-center justify-end gap-1 text-[10px] text-emerald-300 mt-2 font-mono">
                     <span>11:45 AM</span>
-                    <CheckCircle2 className="w-3 h-3 text-cyan-300" />
+                    <span className="text-cyan-300 font-bold">✓✓</span>
                   </div>
                 </div>
               </div>
@@ -376,15 +372,15 @@ export const MarketingAssistant: React.FC = () => {
               {/* Copy metadata */}
               <div className="mt-3 flex items-center justify-between text-xs text-slate-400 px-1">
                 <span>Length: {generatedMessage.length} characters</span>
-                <span>Estimated reading time: ~15 seconds</span>
+                <span>Reading time: ~15 seconds</span>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row gap-2.5">
               <button
                 onClick={handleCopy}
-                className="flex-1 py-3 px-4 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 transition-colors flex items-center justify-center gap-2"
+                className="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold bg-white/[0.06] hover:bg-white/[0.1] text-white border border-white/[0.08] transition-colors flex items-center justify-center gap-2"
               >
                 {copied ? (
                   <>
@@ -401,7 +397,7 @@ export const MarketingAssistant: React.FC = () => {
 
               <button
                 onClick={handleWhatsApp}
-                className="flex-1 py-3 px-4 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-950"
+                className="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
                 <Send className="w-4 h-4" />
                 <span>Launch in WhatsApp</span>
@@ -409,14 +405,14 @@ export const MarketingAssistant: React.FC = () => {
             </div>
           </div>
 
-          {/* Growth Engineering Tips Box */}
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-300 space-y-1.5">
+          {/* Growth Engineering Insight */}
+          <div className="surface-card p-4 rounded-xl text-xs text-slate-300 space-y-1">
             <div className="font-semibold text-cyan-300 flex items-center gap-1.5">
               <Flame className="w-3.5 h-3.5 text-cyan-400" />
-              Growth Engineer Pro-Tip:
+              Growth Engineering Observation:
             </div>
             <p className="text-[11px] text-slate-400 leading-relaxed">
-              When distributing across engineering college groups, messages highlighting "practical portfolio project before placement season" achieve 42% higher click-to-register conversion compared to generic "free workshop" announcements.
+              When distributing across engineering college groups, copy highlighting "hands-on portfolio project before placement season" yields 42% higher click-to-register conversion compared to generic "free workshop" headlines.
             </p>
           </div>
         </div>
